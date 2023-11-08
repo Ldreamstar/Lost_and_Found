@@ -1,0 +1,10 @@
+<view class="lose-item">
+  <image class="lose-item-image" src="{{ data.image }}"></image>
+  <view class="lose-content">
+    <text class="name">{{ data.name }}</text>
+    <text class="region">{{ data.region }}</text>
+    <text class="date">{{ data.date }}</text>
+    <text class="describe">{{ data.describe }}</text>
+    <text class="publish-time">{{ data.publish_time }}</text>
+  </view>
+</view>

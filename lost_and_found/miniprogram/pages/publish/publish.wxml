@@ -1,0 +1,58 @@
+<view class="body">
+  <view class="top">
+    <image bindtap="backPage" class="close-icon" src="../../images/close.png"></image>
+    <button size="mini" class="publish-btn">发布</button>
+  </view>
+
+  <view class="container">
+    <view class="type">
+      <view class="type-item {{ type === '0' ? 'type-select' : '' }}" bindtap="selectType" data-id="0">寻物</view>
+      <view class="type-item {{ type === '1' ? 'type-select' : '' }}" bindtap="selectType" data-id="1">寻主</view>
+    </view>
+    <view class="classify">
+      <text>物品类别：</text>
+      <picker 
+        class="picker"
+        mode="multiSelector" 
+        bindchange="bindMultiPickerChange" 
+        bindcolumnchange="bindMultiPickerColumnChange" 
+        value="{{multiIndex}}" 
+        range="{{multiArray}}"
+      >
+        <view class="picker-item">
+          <view class="select" wx:if="{{ select }}">
+            <text>{{multiArray[0][multiIndex[0]]}} / {{multiArray[1][multiIndex[1]]}}</text>
+            <image catchtap="closeSelect" class="delete-icon" src="../../images/delete2.png"></image>
+          </view>
+          <view class="empty" wx:else>
+            <text>请选择</text>
+            <image class="select-icon" src="../../images/select.png"></image>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="input-list">
+      <input value="{{ name }}" class="input-item" placeholder="请输入物品名称" bindinput="getName" type="text"/>
+      <input value="{{ date }}" class="input-item" placeholder="请输入丢失/拾取时间" bindinput="getDate" type="text"/>
+      <input value="{{ region }}" class="input-item" placeholder="请输入丢失/拾取地点" bindinput="getRegion" type="text"/>
+      <input value="{{ phone }}" class="input-item" placeholder="如何联系你？如：微信：123456789" bindinput="getPhone" type="text"/>
+    </view>
+    <view class="desc">
+      <textarea value="{{ desc }}" placeholder="请输入物品描述" id="" cols="25" rows="10" bindinput="getDesc"></textarea>
+      <image wx:if="{{ desc.length > 0 }}" class="close-icon" src="../../images/delete2.png" bindtap="deleteDesc"></image>
+    </view>
+    <view class="upload">
+      <view class="upload-top">
+        <text>最多选择九张图片</text>
+        <text>{{ imgList.length }}/9</text>
+      </view>
+      <view class="upload-list">
+        <view class="img-list" wx:for="{{ imgList }}" wx:key="index">
+          <image class="common" src="{{ item }}"></image>
+          <image bindtap="deleteImg" data-index="{{ index }}" class="delete" src="../../images/delete2.png"></image>
+        </view>
+        <image wx:if="{{ imgList.length < 9 }}"class="default" src="../../images/add2.png" bindtap="uploadImg"></image>
+      </view>
+    </view>
+  </view>
+</view>

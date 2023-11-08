@@ -1,0 +1,6 @@
+<view class="body">
+  <Tab tabList="{{ tabList }}" />
+  <view class="lose-list">
+    <ViewCard wx:for="{{ list }}" wx:key="index" data="{{ item }}" />
+  </view>
+</view>
